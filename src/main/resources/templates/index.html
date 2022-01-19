@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/webjars/bootstrap-icons/font/bootstrap-icons.css"/>
+
+  <title>Sales Taxes</title>
+</head>
+<body>
+<div class="container">
+  <div class="container-fluid bg-light p-5">
+    <h1>Problem 1: Sales Taxes</h1>
+    <p>Coding challenge for itemis CC Cloud & Enterprise recruiting</p>
+  </div>
+
+  <table class="table caption-top">
+    <caption>List of goods</caption>
+    <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Imported?</th>
+      <th scope="col">Price without Tax</th>
+      <th scope="col">Price with Tax</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>music CD</td>
+      <td>Others</td>
+      <td>No</td>
+      <td>14.99</td>
+      <td>16.49</td>
+      <td>
+        <form method="post" action="#" class="text-center">
+          <button type="submit" class="btn btn-danger">
+            <i class="bi bi-trash"></i> Delete
+          </button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Sales Taxes: <span>1.50</span></td>
+    <td>Total: <span>16.49</span></td>
+    </tfoot>
+  </table>
+
+  <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+    Add goods
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add goods</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form
+            class="row gy-2 gx-3 align-items-center"
+            method="post"
+            action="#"
+        >
+          <div class="form-floating">
+            <input
+                type="text"
+                class="form-control text-center"
+                id="name"
+                placeholder="name"
+            >
+            <label for="name">Name</label>
+          </div>
+
+          <div class="form-floating">
+            <select class="form-select" id="category">
+              <option selected value="others">others</option>
+              <option value="book">book</option>
+              <option value="food">food</option>
+              <option value="medicalProduct">medical products</option>
+            </select>
+            <label for="category">Select category</label>
+          </div>
+
+          <div class="form-floating">
+            <select class="form-select" id="imported">
+              <option selected value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+            <label for="imported">Imported?</label>
+          </div>
+
+          <div class="form-floating">
+            <input
+                type="text"
+                class="form-control text-center"
+                id="price"
+                placeholder="price"
+            >
+            <label for="price">Price</label>
+          </div>
+
+          <button type="button" class="btn btn-primary">Add goods</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
