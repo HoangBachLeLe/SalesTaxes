@@ -32,13 +32,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>music CD</td>
-      <td>Others</td>
-      <td>No</td>
-      <td>14.99</td>
-      <td>16.49</td>
+    <tr th:each="goods,index: ${goodsList}">
+      <th scope="row" th:text="${index.count}">1</th>
+      <td th:text="${goods.goodsName}">music CD</td>
+      <td th:text="${goods.getCategory()}">Others</td>
+      <td th:text="${goods.origin == NOTIMPORTED? 'Yes': 'no'}">No</td>
+      <td th:text="${goods.price}">14.99</td>
+      <td th:text="${goods.calculatePriceWithTax()}">16.49</td>
       <td>
         <form method="post" action="#" class="text-center">
           <button type="submit" class="btn btn-danger">
@@ -54,8 +54,8 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>Sales Taxes: <span>1.50</span></td>
-    <td>Total: <span>16.49</span></td>
+    <td>Sales Taxes: <span th:text="${salesTaxes}">1.50</span></td>
+    <td>Total: <span th:text="${totalPrice}">16.49</span></td>
     </tfoot>
   </table>
 

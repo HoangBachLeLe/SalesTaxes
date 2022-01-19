@@ -16,6 +16,11 @@ public class Food implements Goods {
     private final Origin origin;
 
     @Override
+    public String getCategory() {
+        return this.getClass().getSimpleName();
+    }
+
+    @Override
     public BigDecimal calculateSalesTaxes() {
         return this.roundUpPrice(this.calculateImportTax());
     }

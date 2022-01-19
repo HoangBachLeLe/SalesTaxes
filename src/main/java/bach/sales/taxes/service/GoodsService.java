@@ -2,6 +2,7 @@ package bach.sales.taxes.service;
 
 import bach.sales.taxes.modell.Goods;
 import bach.sales.taxes.repository.GoodsRepository;
+import java.math.BigDecimal;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,19 @@ public class GoodsService {
 
     public List<Goods> findAllGoods() {
         return goodsRepository.findAllGoods();
+    }
+
+    public BigDecimal calculateSalesTaxes() {
+        return this.findAllGoods()
+                .stream()
+                .map(Goods::calculateSalesTaxes)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal calculateTotalPrice() {
+        return this.findAllGoods()
+                .stream()
+                .map(Goods::calculatePriceWithTax)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

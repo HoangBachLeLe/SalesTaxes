@@ -15,6 +15,8 @@ public class GoodsController {
     @GetMapping("/")
     public String getIndex(final Model model) {
         model.addAttribute("goodsList", goodsService.findAllGoods());
+        model.addAttribute("salesTaxes", goodsService.calculateSalesTaxes());
+        model.addAttribute("totalPrice", goodsService.calculateTotalPrice());
         return "index";
     }
 }

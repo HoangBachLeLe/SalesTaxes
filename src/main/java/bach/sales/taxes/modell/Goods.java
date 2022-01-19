@@ -9,6 +9,14 @@ public interface Goods {
     double IMPORTTAX = 0.05;
     BigDecimal INCREMENT = BigDecimal.valueOf(0.05);
 
+    String getGoodsName();
+
+    BigDecimal getPrice();
+
+    Origin getOrigin();
+
+    String getCategory();
+
     BigDecimal calculateSalesTaxes();
 
     BigDecimal calculatePriceWithTax();
