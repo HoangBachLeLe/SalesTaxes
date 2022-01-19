@@ -1,4 +1,4 @@
-package bach.sales_taxes;
+package bach.sales.taxes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
