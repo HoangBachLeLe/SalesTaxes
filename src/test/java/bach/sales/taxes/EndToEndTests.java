@@ -63,6 +63,19 @@ public class EndToEndTests {
         assertThat(response.getBody())
                 .contains("headache pills")
                 .contains("12.85");
+
+        // delete headache pills
+        long goodsId = 4;
+        response = template.postForEntity(
+                "/deleteGoods/{id}", null, null, goodsId
+        );
+        assertThat(response.getStatusCode()).isEqualTo(FOUND);
+
+        // check if headache pills is not in table
+        response = this.template.getForEntity("/", String.class);
+        assertThat(response.getStatusCode()).isEqualTo(OK);
+        assertThat(response.getBody())
+                .doesNotContain("headache pills");
     }
 
     @Test

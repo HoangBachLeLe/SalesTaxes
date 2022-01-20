@@ -12,20 +12,24 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @AllArgsConstructor
+@SuppressWarnings("PMD.AvoidFinalLocalVariable")
 public class GoodsRepository {
 
     @SuppressFBWarnings("EI_EXPOSE_REP2")
     private final JdbcTemplate jdbc;
 
-    @SuppressWarnings("PMD.AvoidFinalLocalVariable")
     public List<Goods> findAllGoods() {
         final String sql = "SELECT * FROM goods";
         return jdbc.query(sql, new GoodsRowMapper());
     }
 
-    @SuppressWarnings("PMD.AvoidFinalLocalVariable")
     public void saveGoods(final String goodsName, final String category, final Origin origin, final BigDecimal price) {
         final String sql = "INSERT INTO goods (id, goods_name, category, origin, price) VALUES (NULL, ?, ?, ?, ?)";
         jdbc.update(sql, goodsName, category, origin.toString(), price);
+    }
+
+    public void deleteGoodsById(final long goodsId) {
+        final String sql = "DELETE FROM goods WHERE id = ?";
+        jdbc.update(sql, goodsId);
     }
 }

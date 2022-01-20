@@ -12,10 +12,11 @@ class BookTest {
 
     @Test
     void validInstantiation() {
+        long id = 1;
         String goodsName = "Harry Potter";
         BigDecimal price = BigDecimal.valueOf(12.49);
         Origin origin = NOTIMPORTED;
-        Book book = new Book(goodsName, price, origin);
+        Book book = new Book(id, goodsName, price, origin);
 
         assertThat(book).isNotNull();
         assertThat(book.getGoodsName()).isEqualTo(goodsName);
@@ -26,10 +27,11 @@ class BookTest {
     @DisplayName("Book not imported")
     @Test
     void calculateImportTax1() {
+        long id = 1;
         String goodsName = "Harry Potter";
         BigDecimal price = BigDecimal.valueOf(12.49);
         Origin origin = NOTIMPORTED;
-        Book book = new Book(goodsName, price, origin);
+        Book book = new Book(id, goodsName, price, origin);
 
         BigDecimal salesTaxes = book.calculateSalesTaxes();
 
@@ -39,10 +41,11 @@ class BookTest {
     @DisplayName("Book imported")
     @Test
     void calculateImportTax2() {
+        long id = 1;
         String goodsName = "Harry Potter";
         BigDecimal price = BigDecimal.valueOf(12.49);
         Origin origin = IMPORTED;
-        Book book = new Book(goodsName, price, origin);
+        Book book = new Book(id, goodsName, price, origin);
 
         BigDecimal salesTaxes = book.calculateSalesTaxes();
 

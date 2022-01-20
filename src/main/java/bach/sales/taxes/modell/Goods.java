@@ -9,6 +9,8 @@ public interface Goods {
     double IMPORTTAX = 0.05;
     BigDecimal INCREMENT = BigDecimal.valueOf(0.05);
 
+    Long getId();
+
     String getGoodsName();
 
     BigDecimal getPrice();

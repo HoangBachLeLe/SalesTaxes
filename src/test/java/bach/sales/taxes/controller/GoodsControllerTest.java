@@ -1,8 +1,10 @@
 package bach.sales.taxes.controller;
 
+import static bach.sales.taxes.modell.Origin.NOTIMPORTED;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -12,7 +14,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import bach.sales.taxes.form.GoodsForm;
+import bach.sales.taxes.modell.Book;
+import bach.sales.taxes.modell.Goods;
+import bach.sales.taxes.modell.Origin;
 import bach.sales.taxes.service.GoodsService;
+import java.math.BigDecimal;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -67,5 +74,23 @@ class GoodsControllerTest {
                 .andExpect(content().string(containsString("The number must be a decimal number! Do not forget the dot!")))
                 .andExpect(content().string(containsString("The price must be positive!")))
                 .andExpect(content().string(not(containsString("New goods was added: chocolate bar, food, NOTIMPORTED, 10.0"))));
+    }
+
+    @Test
+    void postDeleteGoods() throws Exception {
+        long id = 1;
+        String goodsName = "Harry Potter";
+        BigDecimal price = BigDecimal.valueOf(12.49);
+        Origin origin = NOTIMPORTED;
+        Book book = new Book(id, goodsName, price, origin);
+
+        when(goodsService.findAllGoods()).thenReturn(List.of(book));
+
+        mvc.perform(post("/deleteGoods/{id}", id))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("/"))
+                .andExpect(view().name("redirect:/"));
+
+        verify(goodsService).deleteGoodsById(id);
     }
 }

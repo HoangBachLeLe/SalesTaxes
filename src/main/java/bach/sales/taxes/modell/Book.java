@@ -11,6 +11,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Book implements Goods {
 
+    @SuppressWarnings("PMD.ShortVariable")
+    private final Long id;
     private final String goodsName;
     private final BigDecimal price;
     private final Origin origin;

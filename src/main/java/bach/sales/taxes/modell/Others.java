@@ -10,6 +10,8 @@ import lombok.Getter;
 @Getter
 public class Others implements Goods {
 
+    @SuppressWarnings("PMD.ShortVariable")
+    private final Long id;
     private final String goodsName;
     private final BigDecimal price;
     private final Origin origin;

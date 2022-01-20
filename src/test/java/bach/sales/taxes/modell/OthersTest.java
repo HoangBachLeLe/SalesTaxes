@@ -12,10 +12,11 @@ class OthersTest {
 
     @Test
     void validInstantiation() {
+        long id = 1;
         String goodsName = "music CD";
         BigDecimal price = BigDecimal.valueOf(14.99);
         Origin origin = NOTIMPORTED;
-        Food food = new Food(goodsName, price, origin);
+        Food food = new Food(id, goodsName, price, origin);
 
         assertThat(food).isNotNull();
         assertThat(food.getGoodsName()).isEqualTo(goodsName);
@@ -26,10 +27,11 @@ class OthersTest {
     @DisplayName("'Others' not imported")
     @Test
     void calculateSalesTaxe1() {
+        long id = 1;
         String goodsName = "music CD";
         BigDecimal price = BigDecimal.valueOf(14.99);
         Origin origin = NOTIMPORTED;
-        Others others = new Others(goodsName, price, origin);
+        Others others = new Others(id, goodsName, price, origin);
 
         BigDecimal salesTaxes = others.calculateSalesTaxes();
 
@@ -39,10 +41,11 @@ class OthersTest {
     @DisplayName("'Others' imported")
     @Test
     void calculateSalesTaxe2() {
+        long id = 1;
         String goodsName = "music CD";
         BigDecimal price = BigDecimal.valueOf(14.99);
         Origin origin = IMPORTED;
-        MedicalProduct medicalProduct = new MedicalProduct(goodsName, price, origin);
+        MedicalProduct medicalProduct = new MedicalProduct(id, goodsName, price, origin);
 
         BigDecimal salesTaxes = medicalProduct.calculateSalesTaxes();
 
