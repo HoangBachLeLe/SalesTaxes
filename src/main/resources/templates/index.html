@@ -12,13 +12,26 @@
   <title>Sales Taxes</title>
 </head>
 <body>
+
+<div class="container" th:if="${newGoodsAdded}">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <h4 class="alert-heading">
+      <i class="bi bi-exclamation-triangle"></i> List was updated
+    </h4>
+    <p th:text="${newGoodsAdded}">
+      Goods was added.
+    </p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+
 <div class="container">
   <div class="container-fluid bg-light p-5">
     <h1>Problem 1: Sales Taxes</h1>
     <p>Coding challenge for itemis CC Cloud & Enterprise recruiting</p>
   </div>
 
-  <table class="table caption-top">
+  <table class="table caption-top my-4">
     <caption>List of goods</caption>
     <thead class="table-dark">
     <tr>
@@ -36,8 +49,9 @@
       <th scope="row" th:text="${index.count}">1</th>
       <td th:text="${goods.goodsName}">music CD</td>
       <td th:text="${goods.getCategory()}">Others</td>
-      <td th:text="${goods.origin == NOTIMPORTED? 'Yes': 'no'}">No</td>
-      <td th:text="${goods.price}">14.99</td>
+      <td th:text="${goods.origin == T(bach.sales.taxes.modell.Origin).IMPORTED ? 'Yes': 'no'}">No
+      </td>
+      <td th:text="${#numbers.formatDecimal(goods.price, 1, 'COMMA', 2, 'POINT')}">14.99</td>
       <td th:text="${goods.calculatePriceWithTax()}">16.49</td>
       <td>
         <form method="post" action="#" class="text-center">
@@ -59,73 +73,80 @@
     </tfoot>
   </table>
 
-  <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
-          data-bs-target="#exampleModal">
-    Add goods
-  </button>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add goods</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <form
+      class="row gy-2 gx-3 align-items-center"
+      method="post"
+      action="#"
+      th:action="@{/addGoods}"
+      th:object="${goodsForm}"
+  >
+    <h3>Add new goods</h3>
+    <div class="row">
+      <div class="col-auto">
+        <div class="form-floating">
+          <input
+              type="text"
+              class="form-control text-center"
+              id="name"
+              placeholder="name"
+              th:field="*{goodsName}"
+              th:classappend="${#fields.hasErrors('goodsName')} ? 'is-invalid' : ''"
+          >
+          <div
+              class="invalid-feedback"
+              th:if="${#fields.hasErrors('goodsName')}"
+              th:errors="*{goodsName}"
+          ></div>
+          <label for="name">Name</label>
+        </div>
       </div>
-      <div class="modal-body">
-        <form
-            class="row gy-2 gx-3 align-items-center"
-            method="post"
-            action="#"
-        >
-          <div class="form-floating">
-            <input
-                type="text"
-                class="form-control text-center"
-                id="name"
-                placeholder="name"
-            >
-            <label for="name">Name</label>
-          </div>
-
-          <div class="form-floating">
-            <select class="form-select" id="category">
-              <option selected value="others">others</option>
-              <option value="book">book</option>
-              <option value="food">food</option>
-              <option value="medicalProduct">medical products</option>
-            </select>
-            <label for="category">Select category</label>
-          </div>
-
-          <div class="form-floating">
-            <select class="form-select" id="imported">
-              <option selected value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-            <label for="imported">Imported?</label>
-          </div>
-
-          <div class="form-floating">
-            <input
-                type="text"
-                class="form-control text-center"
-                id="price"
-                placeholder="price"
-            >
-            <label for="price">Price</label>
-          </div>
-
-          <button type="button" class="btn btn-primary">Add goods</button>
-        </form>
+      <div class="col-auto">
+        <div class="form-floating">
+          <select class="form-select" id="category" th:field="*{category}">
+            <option selected value="others">others</option>
+            <option value="books">books</option>
+            <option value="food">food</option>
+            <option value="medicalProducts">medical products</option>
+          </select>
+          <label for="category">Select category</label>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <div class="col-2">
+        <div class="form-floating">
+          <select class="form-select" id="imported" th:field="*{origin}">
+            <option selected value="NOTIMPORTED">No</option>
+            <option value="IMPORTED">Yes</option>
+          </select>
+          <label for="imported">Imported?</label>
+        </div>
       </div>
+      <div class="col-auto">
+        <div class="form-floating">
+          <input
+              type="text"
+              class="form-control text-center"
+              id="price"
+              placeholder="price"
+              th:field="*{price}"
+              th:classappend="${#fields.hasErrors('price')} ? 'is-invalid' : ''"
+          >
+          <div
+              class="invalid-feedback"
+              th:if="${#fields.hasErrors('price')}"
+              th:errors="*{price}"
+          ></div>
+          <label for="price">Price</label>
+        </div>
+      </div>
+
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">Add goods</button>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </form>
 </div>
 
 <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>

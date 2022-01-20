@@ -1,6 +1,7 @@
 package bach.sales.taxes.service;
 
 import bach.sales.taxes.modell.Goods;
+import bach.sales.taxes.modell.Origin;
 import bach.sales.taxes.repository.GoodsRepository;
 import java.math.BigDecimal;
 import java.util.List;
@@ -29,5 +30,9 @@ public class GoodsService {
                 .stream()
                 .map(Goods::calculatePriceWithTax)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public void saveGoods(final String goodsName, final String category, final Origin origin, final BigDecimal price) {
+        this.goodsRepository.saveGoods(goodsName, category, origin, price);
     }
 }
