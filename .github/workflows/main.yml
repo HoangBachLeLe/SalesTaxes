@@ -17,8 +17,3 @@ jobs:
         run: ./gradlew check
       - name: Build with Gradle
         run: ./gradlew build
-      - name: Start docker container
-        run: docker-compose -f "docker-compose.yml" up -d --build
-      - name: Stop containers
-        if: always()
-        run: docker-compose -f "docker-compose.yml" down
