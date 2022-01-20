@@ -1,0 +1,6 @@
+version: '3'
+services:
+  sales_taxes:
+    build: .
+    ports:
+      - "8080:8080"

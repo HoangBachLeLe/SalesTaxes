@@ -1,5 +1,5 @@
 name: CI
-on: [push, pull_request]
+on: [ push, pull_request ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,3 +17,8 @@ jobs:
         run: ./gradlew check
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Start docker container
+        run: docker-compose -f "docker-compose.yml" up -d --build
+      - name: Stop containers
+        if: always()
+        run: docker-compose -f "docker-compose.yml" down
