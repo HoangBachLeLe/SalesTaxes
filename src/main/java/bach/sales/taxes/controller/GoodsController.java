@@ -1,6 +1,7 @@
 package bach.sales.taxes.controller;
 
 import bach.sales.taxes.form.GoodsForm;
+import bach.sales.taxes.form.InputStringForm;
 import bach.sales.taxes.modell.Origin;
 import bach.sales.taxes.service.GoodsService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -28,6 +29,7 @@ public class GoodsController {
         model.addAttribute("salesTaxes", goodsService.calculateSalesTaxes());
         model.addAttribute("totalPrice", goodsService.calculateTotalPrice());
         model.addAttribute("goodsForm", new GoodsForm(null, null, null, "0.0"));
+        model.addAttribute("inputStringForm", new InputStringForm("1 imported box of chocolates at 10.00"));
         return "index";
     }
 
@@ -36,6 +38,7 @@ public class GoodsController {
     public String postAddGoods(@Valid final GoodsForm form, final BindingResult bindingResult, final Model model,
             final RedirectAttributes redirectAttri) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("inputStringForm", new InputStringForm("1 imported box of chocolates at 10.00"));
             model.addAttribute("goodsList", goodsService.findAllGoods());
             return "index";
         }
@@ -60,6 +63,18 @@ public class GoodsController {
     @PostMapping("/deleteGoods/{id}")
     public String postDeleteGoods(@PathVariable("id") final int goodsId) {
         goodsService.deleteGoodsById(goodsId);
+        return "redirect:/";
+    }
+
+    @SuppressWarnings("PMD.OnlyOneReturn")
+    @PostMapping("/addGoodsByInputString")
+    public String addGoodsByInputString(@Valid final InputStringForm form, final BindingResult bindingResult, final Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("goodsForm", new GoodsForm(null, null, null, "0.0"));
+            model.addAttribute("goodsList", goodsService.findAllGoods());
+            return "index";
+        }
+        goodsService.addGoodsByInputString(form.getInputString());
         return "redirect:/";
     }
 }

@@ -149,6 +149,66 @@
 
     </div>
   </form>
+
+  <hr>
+
+  <form
+      class="row gy-2 gx-3 align-items-center"
+      method="post"
+      action="#"
+      th:action="@{/addGoodsByInputString}"
+      th:object="${inputStringForm}"
+  >
+
+    <div class="row">
+      <div class="col-4">
+        <div class="form-floating">
+          <input
+              type="text"
+              class="form-control text-center"
+              id="inputString"
+              placeholder="inputString"
+              th:field="*{inputString}"
+              th:classappend="${#fields.hasErrors('inputString')} ? 'is-invalid' : ''"
+          >
+          <div
+              class="invalid-feedback"
+              th:if="${#fields.hasErrors('inputString')}"
+              th:errors="*{inputString}"
+          ></div>
+          <label for="inputString">Input String</label>
+        </div>
+      </div>
+
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">Add goods</button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <a class="btn btn-info" data-bs-toggle="collapse" href="#collapseExample" role="button"
+     aria-expanded="false" aria-controls="collapseExample">
+    more examples for Input String
+  </a>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <ul class="list-group">
+        <li class="list-group-item">1 book at 12.49</li>
+        <li class="list-group-item">1 music CD at 14.99</li>
+        <li class="list-group-item">1 chocolate bar at 0.85</li>
+        <li class="list-group-item">1 imported box of chocolates at 10.00</li>
+        <li class="list-group-item">1 imported bottle of perfume at 47.50</li>
+        <li class="list-group-item">1 imported bottle of perfume at 27.99</li>
+        <li class="list-group-item">1 bottle of perfume at 18.99</li>
+        <li class="list-group-item">1 box of imported chocolates at 11.25</li>
+        <li class="list-group-item">5 box of imported chocolates at 11.25</li>
+        <li class="list-group-item">8 box of imported chocolates at 11.25</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>

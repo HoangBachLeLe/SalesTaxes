@@ -1,8 +1,13 @@
 package bach.sales.taxes.controller;
 
+import static bach.sales.taxes.modell.Origin.IMPORTED;
 import static bach.sales.taxes.modell.Origin.NOTIMPORTED;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -58,6 +63,8 @@ class GoodsControllerTest {
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/"))
                 .andExpect(view().name("redirect:/"));
+
+        verify(goodsService).saveGoods("chocolate bar", "food", NOTIMPORTED, BigDecimal.valueOf(10.0));
     }
 
     @Test
@@ -74,6 +81,8 @@ class GoodsControllerTest {
                 .andExpect(content().string(containsString("The number must be a decimal number! Do not forget the dot!")))
                 .andExpect(content().string(containsString("The price must be positive!")))
                 .andExpect(content().string(not(containsString("New goods was added: chocolate bar, food, NOTIMPORTED, 10.0"))));
+
+        verify(goodsService, never()).saveGoods(anyString(), anyString(), any(Origin.class), any(BigDecimal.class));
     }
 
     @Test
@@ -92,5 +101,27 @@ class GoodsControllerTest {
                 .andExpect(view().name("redirect:/"));
 
         verify(goodsService).deleteGoodsById(id);
+    }
+
+    @Test
+    void postAddGoodsByInputStringValid() throws Exception {
+        mvc.perform(post("/addGoodsByInputString")
+                        .param("inputString", "3 imported bottle of perfume at 27.99"))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("/"))
+                .andExpect(view().name("redirect:/"));
+
+        verify(goodsService).addGoodsByInputString("3 imported bottle of perfume at 27.99");
+    }
+
+    @Test
+    void postAddGoodsByInputStringInvalid() throws Exception {
+        mvc.perform(post("/addGoodsByInputString")
+                        .param("inputString", ""))
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"))
+                .andExpect(content().string(containsString("[1-9]+\\s([a-zA-Z]+\\s)+at\\s\\d+\\.\\d+")));
+
+        verify(goodsService, never()).addGoodsByInputString(anyString());
     }
 }
