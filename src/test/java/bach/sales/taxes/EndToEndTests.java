@@ -32,7 +32,7 @@ public class EndToEndTests {
         ResponseEntity<String> response;
 
         // check goods in database
-        // make sure headache pills is not in table
+        // make sure stomach ache pills is not in table
         response = this.template.getForEntity("/", String.class);
         assertThat(response.getStatusCode()).isEqualTo(OK);
         assertThat(response.getBody())
@@ -41,13 +41,13 @@ public class EndToEndTests {
                 .contains("Food")
                 .contains("no")
                 .contains("0.85")
-                .doesNotContain("headache pills");
+                .doesNotContain("stomach ache pills");
 
-        // add headache pills to table
+        // add stomach ache pills to table
         response = this.template.postForEntity(
                 "/addGoods",
                 formData(of(
-                        "goodsName", "headache pills",
+                        "goodsName", "stomach ache pills",
                         "category", "medicalProducts",
                         "origin", "IMPORTED",
                         "price", "12.2"
@@ -56,25 +56,25 @@ public class EndToEndTests {
         );
         assertThat(response.getStatusCode()).isEqualTo(FOUND);
 
-        // check if headache pills is in table
+        // check if stomach ache pills is in table
         response = this.template.getForEntity("/", String.class);
         assertThat(response.getStatusCode()).isEqualTo(OK);
         assertThat(response.getBody())
-                .contains("headache pills")
+                .contains("stomach ache pills")
                 .contains("12.85");
 
-        // delete headache pills
+        // delete stomach ache pills
         long goodsId = 4;
         response = template.postForEntity(
                 "/deleteGoods/{id}", null, null, goodsId
         );
         assertThat(response.getStatusCode()).isEqualTo(FOUND);
 
-        // check if headache pills is not in table
+        // check if stomach ache pills is not in table
         response = this.template.getForEntity("/", String.class);
         assertThat(response.getStatusCode()).isEqualTo(OK);
         assertThat(response.getBody())
-                .doesNotContain("headache pills");
+                .doesNotContain("stomach ache pills");
 
         // add imported box of white chocolates to table
         response = this.template.postForEntity(
