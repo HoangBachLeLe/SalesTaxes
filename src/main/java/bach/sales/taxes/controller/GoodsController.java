@@ -28,7 +28,7 @@ public class GoodsController {
         model.addAttribute("goodsList", goodsService.findAllGoods());
         model.addAttribute("salesTaxes", goodsService.calculateSalesTaxes());
         model.addAttribute("totalPrice", goodsService.calculateTotalPrice());
-        model.addAttribute("goodsForm", new GoodsForm(null, null, null, "0.0"));
+        model.addAttribute("goodsForm", new GoodsForm("", "", "", "0.0"));
         model.addAttribute("inputStringForm", new InputStringForm("1 imported box of chocolates at 10.00"));
         return "index";
     }
@@ -70,7 +70,7 @@ public class GoodsController {
     @PostMapping("/addGoodsByInputString")
     public String addGoodsByInputString(@Valid final InputStringForm form, final BindingResult bindingResult, final Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("goodsForm", new GoodsForm(null, null, null, "0.0"));
+            model.addAttribute("goodsForm", new GoodsForm("", "", "", "0.0"));
             model.addAttribute("goodsList", goodsService.findAllGoods());
             return "index";
         }

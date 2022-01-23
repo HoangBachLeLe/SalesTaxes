@@ -76,6 +76,23 @@ public class EndToEndTests {
         assertThat(response.getStatusCode()).isEqualTo(OK);
         assertThat(response.getBody())
                 .doesNotContain("headache pills");
+
+        // add imported box of white chocolates to table
+        response = this.template.postForEntity(
+                "/addGoodsByInputString",
+                formData(of(
+                        "inputString", "1 imported box of white chocolates at 11.11"
+                )),
+                String.class
+        );
+        assertThat(response.getStatusCode()).isEqualTo(FOUND);
+
+        // check if imported box of chocolates is in table
+        response = this.template.getForEntity("/", String.class);
+        assertThat(response.getStatusCode()).isEqualTo(OK);
+        assertThat(response.getBody())
+                .contains("imported box of white chocolates")
+                .contains("11.71");
     }
 
     @Test

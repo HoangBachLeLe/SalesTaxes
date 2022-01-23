@@ -19,6 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import bach.sales.taxes.form.GoodsForm;
+import bach.sales.taxes.form.InputStringForm;
 import bach.sales.taxes.modell.Book;
 import bach.sales.taxes.modell.Goods;
 import bach.sales.taxes.modell.Origin;
@@ -45,7 +46,8 @@ class GoodsControllerTest {
         mvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
-                .andExpect(model().attribute("goodsForm", new GoodsForm(null, null, null, "0.0")))
+                .andExpect(model().attribute("goodsForm", new GoodsForm("", "", "", "0.0")))
+                .andExpect(model().attribute("inputStringForm", new InputStringForm("1 imported box of chocolates at 10.00")))
                 .andExpect(content().string(containsString("Problem 1: Sales Taxes")));
 
         verify(goodsService).findAllGoods();
