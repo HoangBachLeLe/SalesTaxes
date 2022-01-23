@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8"/>
   <meta
@@ -27,32 +27,36 @@
 
 <div class="container">
   <div class="container-fluid bg-light p-5">
-    <h1>Problem 1: Sales Taxes</h1>
-    <p>Coding challenge for itemis CC Cloud & Enterprise recruiting</p>
+    <h1>Sales Taxes</h1>
   </div>
 
   <table class="table caption-top my-4">
     <caption>List of goods</caption>
     <thead class="table-dark">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Category</th>
-      <th scope="col">Imported?</th>
-      <th scope="col">Price without Tax</th>
-      <th scope="col">Price with Tax</th>
+      <th class="text-center" scope="col">#</th>
+      <th class="text-center" scope="col">Name</th>
+      <th class="text-center" scope="col">Category</th>
+      <th class="text-center" scope="col">Imported?</th>
+      <th class="text-end" scope="col">Price without Tax</th>
+      <th class="text-end" scope="col">Sales Taxes</th>
+      <th class="text-end" scope="col">Price with Tax</th>
       <th scope="col">&nbsp;</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="goods,index: ${goodsList}">
-      <th scope="row" th:text="${index.count}">1</th>
-      <td th:text="${goods.goodsName}">music CD</td>
-      <td th:text="${goods.getCategory()}">Others</td>
-      <td th:text="${goods.origin == T(bach.sales.taxes.modell.Origin).IMPORTED ? 'Yes': 'no'}">No
+      <th class="text-center" scope="row" th:text="${index.count}">1</th>
+      <td class="text-center" th:text="${goods.goodsName}">music CD</td>
+      <td class="text-center" th:text="${goods.getCategory()}">Others</td>
+      <td class="text-center"
+          th:text="${goods.origin == T(bach.sales.taxes.modell.Origin).IMPORTED ? 'Yes': 'no'}">No
       </td>
-      <td th:text="${#numbers.formatDecimal(goods.price, 1, 'COMMA', 2, 'POINT')}">14.99</td>
-      <td th:text="${goods.calculatePriceWithTax()}">16.49</td>
+      <td class="text-end" th:text="${#numbers.formatDecimal(goods.price, 1, 'COMMA', 2, 'POINT')}">
+        14.99
+      </td>
+      <td class="text-end" th:text="${goods.calculateSalesTaxes()}">1.50</td>
+      <td class="text-end" th:text="${goods.calculatePriceWithTax()}">16.49</td>
       <td>
         <form method="post"
               action="#" th:action="@{/deleteGoods/{id}(id=${goods.id})}"
@@ -70,8 +74,9 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>Sales Taxes: <span th:text="${salesTaxes}">1.50</span></td>
-    <td>Total: <span th:text="${totalPrice}">16.49</span></td>
+    <td class="text-end">Sales Taxes: <span th:text="${salesTaxes}">1.50</span></td>
+    <td class="text-end">Total: <span th:text="${totalPrice}">16.49</span></td>
+    <td>&nbsp;</td>
     </tfoot>
   </table>
 

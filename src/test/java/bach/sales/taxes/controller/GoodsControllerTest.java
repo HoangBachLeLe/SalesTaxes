@@ -48,7 +48,7 @@ class GoodsControllerTest {
                 .andExpect(view().name("index"))
                 .andExpect(model().attribute("goodsForm", new GoodsForm("", "", "", "0.0")))
                 .andExpect(model().attribute("inputStringForm", new InputStringForm("1 imported box of chocolates at 10.00")))
-                .andExpect(content().string(containsString("Problem 1: Sales Taxes")));
+                .andExpect(content().string(containsString("Sales Taxes")));
 
         verify(goodsService).findAllGoods();
         verify(goodsService).calculateSalesTaxes();
@@ -78,7 +78,7 @@ class GoodsControllerTest {
                         .param("price", ""))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
-                .andExpect(content().string(containsString("Problem 1: Sales Taxes")))
+                .andExpect(content().string(containsString("Sales Taxes")))
                 .andExpect(content().string(containsString("The name must not be empty!")))
                 .andExpect(content().string(containsString("The number must be a decimal number! Do not forget the dot!")))
                 .andExpect(content().string(containsString("The price must be positive!")))

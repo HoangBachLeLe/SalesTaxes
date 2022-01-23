@@ -36,8 +36,7 @@ public class EndToEndTests {
         response = this.template.getForEntity("/", String.class);
         assertThat(response.getStatusCode()).isEqualTo(OK);
         assertThat(response.getBody())
-                .contains("Problem 1: Sales Taxes")
-                .contains("Coding challenge for itemis CC Cloud & Enterprise recruiting")
+                .contains("Sales Taxes")
                 .contains("chocolate bar")
                 .contains("Food")
                 .contains("no")
