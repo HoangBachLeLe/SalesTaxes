@@ -3,6 +3,7 @@ package bach.sales.taxes.repository.mapper;
 import bach.sales.taxes.modell.Book;
 import bach.sales.taxes.modell.Food;
 import bach.sales.taxes.modell.Goods;
+import bach.sales.taxes.modell.MedicalProduct;
 import bach.sales.taxes.modell.Origin;
 import bach.sales.taxes.modell.Others;
 import java.sql.ResultSet;
@@ -16,9 +17,9 @@ public class GoodsRowMapper implements RowMapper<Goods> {
     @SuppressWarnings({"PMD.DataflowAnomalyAnalysis", "PMD.AvoidDuplicateLiterals"})
     public Goods mapRow(final ResultSet resultSet, final int rowNum) throws SQLException {
         Goods goods = null;
-        final String produktName = resultSet.getString("category");
+        final String category = resultSet.getString("category");
 
-        if ("others".equals(produktName)) {
+        if ("others".equals(category)) {
             goods = new Others(
                     resultSet.getLong("id"),
                     resultSet.getString("goods_name"),
@@ -26,7 +27,7 @@ public class GoodsRowMapper implements RowMapper<Goods> {
                     Origin.valueOf(resultSet.getString("origin"))
             );
         }
-        if ("books".equals(produktName)) {
+        if ("books".equals(category)) {
             goods = new Book(
                     resultSet.getLong("id"),
                     resultSet.getString("goods_name"),
@@ -34,7 +35,7 @@ public class GoodsRowMapper implements RowMapper<Goods> {
                     Origin.valueOf(resultSet.getString("origin"))
             );
         }
-        if ("food".equals(produktName)) {
+        if ("food".equals(category)) {
             goods = new Food(
                     resultSet.getLong("id"),
                     resultSet.getString("goods_name"),
@@ -42,8 +43,8 @@ public class GoodsRowMapper implements RowMapper<Goods> {
                     Origin.valueOf(resultSet.getString("origin"))
             );
         }
-        if ("medicalProducts".equals(produktName)) {
-            goods = new Food(
+        if ("medicalProducts".equals(category)) {
+            goods = new MedicalProduct(
                     resultSet.getLong("id"),
                     resultSet.getString("goods_name"),
                     resultSet.getBigDecimal("price"),
