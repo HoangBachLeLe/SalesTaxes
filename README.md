@@ -1,6 +1,7 @@
 # Sales Taxes
 
 ### Preview
+[See template on GitHub Pages](https://hoangbachlele.github.io/SalesTaxes/src/main/resources/templates/index.html)
 
 ![Preview](./preview.png)
 
