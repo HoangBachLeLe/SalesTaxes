@@ -1,5 +1,6 @@
 # Sales Taxes
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/cbe4a2abbaac4ec8a63d6763520943ed)](https://www.codacy.com/gh/HoangBachLeLe/SalesTaxes/dashboard?utm_source=github.com&utm_medium=referral&utm_content=HoangBachLeLe/SalesTaxes&utm_campaign=Badge_Coverage)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dde9bb18bb5a4abaa529e7cc51aacdba)](https://app.codacy.com/gh/HoangBachLeLe/SalesTaxes?utm_source=github.com&utm_medium=referral&utm_content=HoangBachLeLe/SalesTaxes&utm_campaign=Badge_Grade_Settings)
 [![CI](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/main.yml/badge.svg)](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/main.yml)
 
