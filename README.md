@@ -1,5 +1,6 @@
 # Sales Taxes
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dde9bb18bb5a4abaa529e7cc51aacdba)](https://app.codacy.com/gh/HoangBachLeLe/SalesTaxes?utm_source=github.com&utm_medium=referral&utm_content=HoangBachLeLe/SalesTaxes&utm_campaign=Badge_Grade_Settings)
 [![CI](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/main.yml/badge.svg)](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/main.yml)
 
 Basic sales tax is applicable at a rate of 10% on all goods, except books, food, and medical 
