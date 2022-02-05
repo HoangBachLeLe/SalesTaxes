@@ -5,6 +5,7 @@
 [![Code Grade](https://api.codiga.io/project/30864/status/svg)](https://www.codiga.io)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dde9bb18bb5a4abaa529e7cc51aacdba)](https://app.codacy.com/gh/HoangBachLeLe/SalesTaxes?utm_source=github.com&utm_medium=referral&utm_content=HoangBachLeLe/SalesTaxes&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/cbe4a2abbaac4ec8a63d6763520943ed)](https://www.codacy.com/gh/HoangBachLeLe/SalesTaxes/dashboard?utm_source=github.com&utm_medium=referral&utm_content=HoangBachLeLe/SalesTaxes&utm_campaign=Badge_Coverage)
+[![codecov](https://codecov.io/gh/HoangBachLeLe/SalesTaxes/branch/main/graph/badge.svg?token=C46GYP2OXE)](https://codecov.io/gh/HoangBachLeLe/SalesTaxes)
 
 Basic sales tax is applicable at a rate of 10% on all goods, except books, food, and medical 
 products that are exempt. Import duty is an additional sales tax applicable on all imported goods 
