@@ -7,6 +7,8 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/cbe4a2abbaac4ec8a63d6763520943ed)](https://www.codacy.com/gh/HoangBachLeLe/SalesTaxes/dashboard?utm_source=github.com&utm_medium=referral&utm_content=HoangBachLeLe/SalesTaxes&utm_campaign=Badge_Coverage)
 [![codecov](https://codecov.io/gh/HoangBachLeLe/SalesTaxes/branch/main/graph/badge.svg?token=C46GYP2OXE)](https://codecov.io/gh/HoangBachLeLe/SalesTaxes)
 
+The application is available on heroku: https://sales-taxes.herokuapp.com/
+
 Basic sales tax is applicable at a rate of 10% on all goods, except books, food, and medical 
 products that are exempt. Import duty is an additional sales tax applicable on all imported goods 
 at a rate of 5%, with no exemptions.
