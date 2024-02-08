@@ -1,13 +1,8 @@
 # Sales Taxes
 
-[![CI](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/main.yml/badge.svg)](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/main.yml)
-[![Code Grade](https://api.codiga.io/project/30864/score/svg)](https://www.codiga.io)
-[![Code Grade](https://api.codiga.io/project/30864/status/svg)](https://www.codiga.io)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dde9bb18bb5a4abaa529e7cc51aacdba)](https://app.codacy.com/gh/HoangBachLeLe/SalesTaxes?utm_source=github.com&utm_medium=referral&utm_content=HoangBachLeLe/SalesTaxes&utm_campaign=Badge_Grade_Settings)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/cbe4a2abbaac4ec8a63d6763520943ed)](https://www.codacy.com/gh/HoangBachLeLe/SalesTaxes/dashboard?utm_source=github.com&utm_medium=referral&utm_content=HoangBachLeLe/SalesTaxes&utm_campaign=Badge_Coverage)
-[![codecov](https://codecov.io/gh/HoangBachLeLe/SalesTaxes/branch/main/graph/badge.svg?token=C46GYP2OXE)](https://codecov.io/gh/HoangBachLeLe/SalesTaxes)
-
-The application is deployed on heroku: https://sales-taxes.herokuapp.com/
+[![Continuous Integration](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/continuous-integration.yaml/badge.svg)](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/continuous-integration.yaml)
+[![Create and Publish Container Image](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/build-container-image.yaml/badge.svg)](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/build-container-image.yaml)
+[![ContinuousIntegration](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/trivy-image-scan.yaml/badge.svg)](https://github.com/HoangBachLeLe/SalesTaxes/actions/workflows/trivy-image-scan.yaml)
 
 Basic sales tax is applicable at a rate of 10% on all goods, except books, food, and medical 
 products that are exempt. Import duty is an additional sales tax applicable on all imported goods 
@@ -66,10 +61,11 @@ Total: 74.68</br>
 ![Preview](./preview.png)
 
 ## How to run the application?
-In order to run the application you need to have Docker and docker-compose installed on your machine. Execute the following command:
+In order to run the application you need to have Docker installed on your machine. Execute the following command:
 
 ```sh
-docker-compose up
+docker pull ghcr.io/hoangbachlele/salestaxes:latest
+docker run -p 8080:8080 ghcr.io/hoangbachlele/salestaxes:latest
 ```
 
 Then open the web page `http://localhost:8080` in a browser.
