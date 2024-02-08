@@ -56,8 +56,6 @@ Sales Taxes: 6.70</br>
 Total: 74.68</br>
 
 ## Preview
-[See template on GitHub Pages](https://hoangbachlele.github.io/SalesTaxes/src/main/resources/templates/index.html)
-
 ![Preview](./preview.png)
 
 ## How to run the application?
